@@ -1,4 +1,4 @@
-name: Bootstrap VM COTs
+name: Ansible Playbook
 
 on: [workflow_dispatch]
 
@@ -6,22 +6,8 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Azure Service Principal
-        uses: CIO/action-azure-service-principal@v0
+      - name: Run a Playbook
+        uses: ShivaKarki/action-ansible-config@v1.5
         with:
-          servicePrincipalName: 'Bootstrap-SPN'
-
-      - name: Create VM COTS Repo
-        uses: CIO/action-bootstrap-repo@v0
-        with:
-          repoType: 'VM COTS'
-
-      - name: Create workflow Refrence
-        uses: CIO/action-reference-worflow@v0
-        with:
-          repoType: 'action reference repo'
-
-      - name: Create Base Resource Group
-        uses: CIO/action-base-resource-group@v0
-        with:
-          resourceGroupName: 'rg-name'
+          playbook: playbook.yml
+      
